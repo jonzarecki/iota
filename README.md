@@ -4,26 +4,7 @@
 
 Code for selecting informative labels of images based on a known distribution of labels.
 
-### To install:
-```
-yes | conda create -n iota python=2.7 pyqt=4.11
-source activate iota
-```
-```
-yes | conda install pandas scikit-image ipython jupyter
-yes | conda install scikit-learn
-yes | conda install -c anaconda seaborn
-yes | conda install -c anaconda scikit-image
-yes | conda install -c omnia termcolor 
-```
-
-You may also need to update or downgrade matplotlib
-```
-conda install matplotlib=2.0.2
-
-```
-
-Install environment 
+### To install   
 ```
 $ conda install --yes --file requirements.txt
 
@@ -34,14 +15,17 @@ requirements.txt
 
 ```
 
-Download IOTA-10K ground truth data 
+### To download IOTA-10K ground truth data 
 ```
 wget https://chechiklab.biu.ac.il/~brachalior/IOTA/data/iota10K/iota_raw.csv
 .tar.gz
 
 ```
-
-Save OID data to iota/Data/oid or link to your data folder via 
+### Open Images Dataset (OID)
+Download [Image-Level Labels] (https://storage.googleapis
+.com/openimages/web/download.html) to iota/Data/oid 
+or 
+link to your data folder by running from iota/Data:
 ```
 ln -s [your data dir] oid
 
