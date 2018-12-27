@@ -22,11 +22,11 @@ wget https://chechiklab.biu.ac.il/~brachalior/IOTA/data/iota10K/iota_raw.csv
 
 ```
 ### Open Images Dataset (OID)
-Download [Image-Level Labels] (https://storage.googleapis
-.com/openimages/web/download.html) to iota/Data/oid 
+Download [Image-Level Labels](https://storage.googleapis.com/openimages/web/download.html) to iota/Data/oid 
 or 
 link to your data folder by running from iota/Data:
 ```
 ln -s [your data dir] oid
 
 ``` 
+

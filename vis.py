@@ -3,6 +3,11 @@ Code for visualizing IOTA results
 
 """
 
+if MYPATH in os.env:
+    set_path(MYPATH)
+else:
+    set_oath('.')
+
 import os
 import matplotlib
 if "DISPLAY" not in os.environ:

@@ -29,7 +29,6 @@ pd.set_option('precision', 2)
 """
 
 print(os.getcwd())
-print(colored('Informative Annotations', 'cyan'))
 
 # Init: flags, version, hyper parameters
 assert(sys.version_info[0] == 2)  # Python 2.7
