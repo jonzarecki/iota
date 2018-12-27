@@ -51,7 +51,7 @@ hp['y_force'] = args.y_force
 hp['gt_vocab'] = args.gt_vocab  # True - drop the image if its gt not in vocab.
 hp['k'] = int(args.k)
 
-# Loop over seeds. (seed 0 match p0.0 i.e. No skipping)
+# Loop over seeds.
 models = dict()
 for seed in range(hp['max_seed']+1):
     hp['seed'] = seed
@@ -104,7 +104,7 @@ for seed in range(hp['max_seed']+1):
 
 label_metrics = utils.compute_metrics_for_tree_mix(models, hp)
 
-# Collect BaC - GT ranks to evaluate metrics precision.
+# Load ground truth data.
 image_to_gt = utils.load_evaluation_set(hp, files['eval_path'],
                                         files['gt_filename'],
                                         args.min_rater_count)

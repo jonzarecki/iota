@@ -101,8 +101,8 @@ def set_file_path(hp):
     files = dict()
     param_string = create_param_string(hp, False)
 
-    # Download the data to Data/oid/validation or use ref
-    oid_dir = 'Data/oid/'
+    # Data directory
+    oid_dir = 'data/oid/'
     files['oid_dir'] = oid_dir
 
     # mapping mid -> label name
@@ -118,12 +118,12 @@ def set_file_path(hp):
     files['eval_path'] = oid_dir + 'evaluation/' + hp['eval_set'] + '.csv'
     files['ver'] = files['oid_dir'] + hp['split'] + '/annotations-human.csv'
     files['images_path'] = oid_dir + hp['split'] + '/images.csv'
-    files['counts_fn'] = 'Data/counts/count_' + param_string + '.pkl'
-    files['metrics_fn'] = 'Data/models/label_metrics_' + \
+    files['counts_fn'] = 'data/counts/count_' + param_string + '.pkl'
+    files['metrics_fn'] = 'data/models/label_metrics_' + \
                                 param_string + '.pkl'
-    files['gt_filename'] = 'Data/ground_truth/gt_dict_' + hp[
+    files['gt_filename'] = 'data/ground_truth/gt_dict_' + hp[
         'eval_set'] + '_' + hp['eval_method'] + '.pkl'
-    files['model_fn'] = 'Data/models/model_%s.pkl' % param_string
+    files['model_fn'] = 'data/models/model_%s.pkl' % param_string
 
     # Output file names, (depend on eval set)
     param_string_eval_set = create_param_string(hp, True)
@@ -331,8 +331,8 @@ def compute_image_metrics(image_to_gt, label_metrics, files, method='ml',
 
     disp = load_display_names(files['class_descriptions'])
     for k, v in disp.items(): disp[k] = v.lower()
-    gtdf['DisplayName'] = gtdf.LabelName.apply(lambda x: disp[x]
-    if x in disp.keys() else 'none')
+    gtdf['DisplayName'] = gtdf.LabelName.apply(lambda x: disp[x] if x in
+                                                                    disp.keys() else 'none')
     gtdf.loc[:, 'y_true'] = [0.0] * gtdf.shape[0]
 
     # Multiple labels.
@@ -467,28 +467,7 @@ def compute_precision(df, k):
     return average_precision, sem_pk, precision_mat
 
 
-'''
-processing iota.
-
-Mapping an image to ground truth labels obtained from three raters.
-Note: iota images in the file are from the test & validation of OID.
-
- (*) Majority vote to set a single GT label.
- (*) MID entries only.
- (*) We consider only L1 field (single label). 23 images has L2. 4 images has 
- at least 2 L2 labels (meaning were 'loosing' 4 images).  
-
-iota10K pre-processing:
- (0) Added 'split' field.
- (1) Removed images with only 1 label (see Docs/iota_change_log.txt).
-
-'''
-
-
-# I/O: Getting iota data frame w/ headers:
-# ImageID | L1 | L2 and returning { id -> ground truth label }
-# We consider only L1 field (single label).
-def parse_iota(iota, min_rater_count=2):
+def parse_iota10K(iota, min_rater_count=2):
     gt = dict()
     images = list(set(iota.ImageID.values.tolist()))
     print('IOTA-10K evaluation set has [%d] images' % len(images))
@@ -521,7 +500,7 @@ def load_evaluation_set(hp, eval_path, gt_dict_path, min_rater_count):
         image_to_gt = pickle.load(open(gt_dict_path, 'r'))
         return image_to_gt
     df = pd.read_csv(eval_path)
-    image_to_sl, image_to_ml = parse_iota(df, min_rater_count)
+    image_to_sl, image_to_ml = parse_iota10K(df, min_rater_count)
     image_to_gt = image_to_sl if (hp['eval_method'] == 'sl') \
         else image_to_ml
     pickle.dump(image_to_gt, open(gt_dict_path, 'w'))

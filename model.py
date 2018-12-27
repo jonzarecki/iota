@@ -20,9 +20,6 @@ def set_pair_key(father, son, ind_to_label):
 
 
 # Count labels across all images.
-# @ singles - dictionary label->count
-# @ total - number of labels in the file
-# @ num_labels - number of labels that appear more than at_least
 def compute_label_count(ann_data, at_least):
     print('Computing count from  = ' + ann_data)
     oid = pd.read_csv(ann_data)
@@ -118,12 +115,12 @@ def compute_label_cooccurrence(filename, label_to_ind, ind_to_label,
         else:
             # New image. Add counts of all previous lines of the prev image
             num_images += 1
-            count, pair_ind_count, label_ind_set = update_counts_faster(
+            count, pair_ind_count, label_ind_set = update_counts(
                 label_ind_set, count, pair_ind_count,
                 label_to_ind, new_label)
             last_image_id = image_id
     num_images += 1
-    count, pair_ind_count, label_ind_set = update_counts_faster(
+    count, pair_ind_count, label_ind_set = update_counts(
         label_ind_set, count, pair_ind_count, label_to_ind,
         'end-of-file')
 
@@ -145,7 +142,7 @@ def compute_label_cooccurrence(filename, label_to_ind, ind_to_label,
     return count, pair_count, c22_dict, num_images
 
 
-def update_counts_faster(label_ind_set, count,
+def update_counts(label_ind_set, count,
                   pair_ind_count, label_to_ind, new_label):
 
     for il1, il2 in itertools.product(label_ind_set, label_ind_set):

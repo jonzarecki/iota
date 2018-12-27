@@ -22,8 +22,27 @@ You may also need to update or downgrade matplotlib
 conda install matplotlib=2.0.2
 
 ```
-Directories and settings:
-Download the OID to iota/Data/oid directory or run from iota/Data    
+
+Install environment 
 ```
-ln -s [path to data] oid
+$ conda install --yes --file requirements.txt
+
+or iterate over the file and install each package in “single package mode”
+
+$ while read requirement; do conda install --yes $requirement; done < 
+requirements.txt
+
 ```
+
+Download IOTA-10K ground truth data 
+```
+wget https://chechiklab.biu.ac.il/~brachalior/IOTA/data/iota10K/iota_raw.csv
+.tar.gz
+
+```
+
+Save OID data to iota/Data/oid or link to your data folder via 
+```
+ln -s [your data dir] oid
+
+``` 
