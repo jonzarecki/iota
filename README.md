@@ -9,8 +9,7 @@ Code for selecting informative labels of images based on a known distribution of
 $ conda install --yes --file requirements.txt
 
 to install in a “single package mode”:
-$ while read requirement; do conda install --yes $requirement; done < 
-requirements.txt
+$ while read requirement; do conda install --yes $requirement; done < requirements.txt
 ```
 
 ### IOTA-10K ground truth data 
