@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d83d49f2-7514-4abe-9ab2-c1d68e5b7e15" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/counts/git" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/ground_truth/gt_dict_iota_test_ml.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/ground_truth/gt_dict_iota_test_sl.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/ground_truth/gt_dict_iota_validation_ml.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/ground_truth/gt_dict_iota_validation_sl.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/models/git" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Results/oid_validation_machine_100_s0p0.1_iota_validation_ver_voc_yforce_sl/avg_label_metrics.pkl" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vis.py" beforeDir="false" afterPath="$PROJECT_DIR$/vis.py" afterDir="false" />
     </list>
@@ -22,7 +15,21 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/iota$main.coverage" NAME="main Coverage Results" MODIFIED="1546168678014" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/iota$main.coverage" NAME="main Coverage Results" MODIFIED="1546172744918" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="FUSProjectUsageTrigger">
     <session id="-1396660458">
@@ -40,27 +47,27 @@
         <counts>
           <entry key="gitignore" value="1" />
           <entry key="md" value="6" />
-          <entry key="py" value="8" />
+          <entry key="py" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Markdown" value="6" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="8" />
+          <entry key="Python" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="1076" />
-          <entry key="md" value="894" />
-          <entry key="py" value="2770" />
+          <entry key="Python Console" value="1097" />
+          <entry key="md" value="929" />
+          <entry key="py" value="2828" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Markdown" value="894" />
-          <entry key="Python" value="3846" />
+          <entry key="Markdown" value="929" />
+          <entry key="Python" value="3925" />
         </counts>
       </usages-collector>
     </session>
@@ -70,8 +77,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="553">
-              <caret line="126" lean-forward="true" selection-start-line="126" selection-end-line="126" />
+            <state relative-caret-position="623">
+              <caret line="118" lean-forward="true" selection-start-line="118" selection-end-line="118" />
               <folding>
                 <element signature="e#229#241#0" expanded="true" />
               </folding>
@@ -79,11 +86,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="108" column="22" lean-forward="true" selection-start-line="108" selection-start-column="22" selection-end-line="108" selection-end-column="22" />
+            <state relative-caret-position="320">
+              <caret line="106" column="21" lean-forward="true" selection-start-line="106" selection-start-column="21" selection-end-line="106" selection-end-column="21" />
               <folding>
                 <element signature="e#35#47#0" expanded="true" />
               </folding>
@@ -91,12 +98,12 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="399">
-                <caret line="34" column="21" lean-forward="true" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
+              <first_editor relative-caret-position="220">
+                <caret line="11" selection-start-line="11" selection-end-line="11" />
               </first_editor>
               <second_editor />
             </state>
@@ -115,8 +122,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="269" column="22" lean-forward="true" selection-start-line="269" selection-start-column="22" selection-end-line="269" selection-end-column="22" />
+            <state relative-caret-position="-30">
+              <caret line="134" lean-forward="true" selection-start-line="134" selection-end-line="134" />
               <folding>
                 <element signature="e#44#53#0" expanded="true" />
               </folding>
@@ -143,6 +150,7 @@
       <find>files['oid_dir']</find>
       <find>files['gt_filename']</find>
       <find>files['eval_path']</find>
+      <find>Results</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -155,8 +163,8 @@
         <option value="$PROJECT_DIR$/model.py" />
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/vis.py" />
-        <option value="$PROJECT_DIR$/utils.py" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/utils.py" />
       </list>
     </option>
   </component>
@@ -195,18 +203,6 @@
               <item name="iota" type="b2602c69:ProjectViewProjectNode" />
               <item name="iota" type="462c0819:PsiDirectoryNode" />
               <item name="results" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="iota" type="b2602c69:ProjectViewProjectNode" />
-              <item name="iota" type="462c0819:PsiDirectoryNode" />
-              <item name="results" type="462c0819:PsiDirectoryNode" />
-              <item name="counts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="iota" type="b2602c69:ProjectViewProjectNode" />
-              <item name="iota" type="462c0819:PsiDirectoryNode" />
-              <item name="results" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -289,7 +285,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32879582" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.2764398" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.31518325" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -303,7 +299,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" weight="0.4958632" />
-      <window_info anchor="right" id="Database" order="4" />
+      <window_info anchor="right" id="Database" order="4" weight="0.32984003" />
       <window_info anchor="right" content_ui="combo" id="Project" order="5" weight="0.34362933" />
     </layout>
     <layout-to-restore>
@@ -341,8 +337,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>117</line>
-          <option name="timeStamp" value="22" />
+          <line>96</line>
+          <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -380,8 +376,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vis.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="269" column="22" lean-forward="true" selection-start-line="269" selection-start-column="22" selection-end-line="269" selection-end-column="22" />
+        <state relative-caret-position="-30">
+          <caret line="134" lean-forward="true" selection-start-line="134" selection-end-line="134" />
           <folding>
             <element signature="e#44#53#0" expanded="true" />
           </folding>
@@ -390,20 +386,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="553">
-          <caret line="126" lean-forward="true" selection-start-line="126" selection-end-line="126" />
+        <state relative-caret-position="623">
+          <caret line="118" lean-forward="true" selection-start-line="118" selection-end-line="118" />
           <folding>
             <element signature="e#229#241#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="108" column="22" lean-forward="true" selection-start-line="108" selection-start-column="22" selection-end-line="108" selection-end-column="22" />
-          <folding>
-            <element signature="e#35#47#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -411,10 +397,20 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="399">
-            <caret line="34" column="21" lean-forward="true" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
+          <first_editor relative-caret-position="220">
+            <caret line="11" selection-start-line="11" selection-end-line="11" />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="106" column="21" lean-forward="true" selection-start-line="106" selection-start-column="21" selection-end-line="106" selection-end-column="21" />
+          <folding>
+            <element signature="e#35#47#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

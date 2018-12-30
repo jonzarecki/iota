@@ -94,7 +94,7 @@ for seed in range(hp['max_seed']+1):
     models[seed]['label_metrics'] = label_metrics
     pickle.dump(models[seed], open(files['model_fn'], 'wb'))
 
-label_metrics = utils.compute_metrics_for_tree_mix(models, hp)
+label_metrics = utils.compute_metrics_for_tree_mix(models, hp, files)
 
 # Load ground truth data.
 image_to_gt = utils.load_evaluation_set(hp, files['iota10k'],

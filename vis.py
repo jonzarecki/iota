@@ -80,20 +80,6 @@ def save_figure_and_close(files, param_string, filename):
     plt.close()
 
 
-# def save_results(hp, files, precision, sem_p, recall, sem_r):
-#     add_eval_set_to_string = True
-#     param_string = create_param_string(hp, add_eval_set_to_string)
-#
-#     path = files['results_dir'] + param_string
-#     if not os.path.exists(path):
-#         os.makedirs(path)
-#
-#     output_filename = '/precision_recall.pkl'
-#     pickle.dump((precision, sem_p, recall, sem_r), open(path +
-#                                                         output_filename, 'w'))
-
-
-
 def plot_correlation(hp, files, df, headers=['Confidence', 'cH', 'cMI',
                                          'cSingleton',
                                         'H', 'px', 'random', 'mi', 'singleton',

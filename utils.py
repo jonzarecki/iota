@@ -273,12 +273,10 @@ def compute_metrics(ind_to_label, singles, c22_dict, mis_tree_graph,
 
 
 # Compute metrics (over the mixture model)
-def compute_metrics_for_tree_mix(models, hp):
+def compute_metrics_for_tree_mix(models, hp, files):
     param_string = create_param_string(hp, True)
-    avg_label_metrics_fn = 'Results/%s/avg_label_metrics.pkl' % param_string
-    dir = 'Results/' + avg_label_metrics_fn.split('/')[1]
-    if not os.path.exists(dir): os.makedirs(dir)
-
+    avg_label_metrics_fn = '%s%s/avg_label_metrics.pkl' % \
+                           (files['results_dir'], param_string)
     if os.path.isfile(avg_label_metrics_fn):
         metrics_df = pickle.load(open(avg_label_metrics_fn, 'r'))
     else:
