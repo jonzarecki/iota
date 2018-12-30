@@ -100,36 +100,52 @@ def create_param_string(hp, add_eval_set=False):
 def set_file_path(hp):
     files = dict()
     param_string = create_param_string(hp, False)
+    #
+    # data
+    #   |_ ground_truth
+    #   |_oid
+    #       |_classes
+    #       |_train
+    #       |_validation
+    #       |_test
+    # results
+    #   |_models
+    #   |_counts
+    #
 
-    # Data directory
-    oid_dir = 'data/oid/'
-    files['oid_dir'] = oid_dir
+    results_dir = os.environ.get('RES_DIR') if 'RES_DIR' in os.environ else ''
+    data_dir = os.environ.get('OID_DIR') if 'OID_DIR' in os.environ else 'data/'
 
-    # mapping mid -> label name
-    files['class_descriptions'] = oid_dir + 'classes/class-descriptions.csv'
+    files['oid_dir'] = data_dir + 'oid/'
+    files['results_dir'] = results_dir + 'results/'
+    files['counts_dir'] = files['results_dir'] + 'counts/'
+    files['models_dir'] = files['results_dir'] + 'models/'
 
-    # Annotation file to approximate the label distribution.
-    files['annotations'] = oid_dir + hp['split'] + '/annotations-' + hp[
-        'rater'] + '.csv'
-
-    # Evaluation set and GT files.
-    files['eval_fn'] = oid_dir + hp['split'] + '/annotations-' + hp[
-        'rater'] + '.csv'
-    files['eval_path'] = oid_dir + 'evaluation/' + hp['eval_set'] + '.csv'
+    files['annotations']=files['oid_dir']+hp['split']+'/annotations-'+hp['rater']+'.csv'
+    files['eval_fn']=files['oid_dir']+hp['split']+'/annotations-'+hp['rater']+'.csv'
     files['ver'] = files['oid_dir'] + hp['split'] + '/annotations-human.csv'
-    files['images_path'] = oid_dir + hp['split'] + '/images.csv'
-    files['counts_fn'] = 'data/counts/count_' + param_string + '.pkl'
-    files['metrics_fn'] = 'data/models/label_metrics_' + \
-                                param_string + '.pkl'
-    files['gt_filename'] = 'data/ground_truth/gt_dict_' + hp[
-        'eval_set'] + '_' + hp['eval_method'] + '.pkl'
-    files['model_fn'] = 'data/models/model_%s.pkl' % param_string
+    files['images_path'] = files['oid_dir'] + hp['split'] + '/images.csv'
+    files['class_descriptions'] = files['oid_dir'] + 'classes/class-descriptions.csv'
+
+    # Path to IOTA-10K.
+    files['iota10k'] = files['oid_dir'] + 'evaluation/' + hp['eval_set'] +'.csv'
+    files['gt_dir'] = 'data/ground_truth/'  # pkl
+
+    # Output files.
+    files['model_fn'] = '%smodel_%s.pkl' % (files['models_dir'], param_string)
+    files['counts_fn'] = '%scount_%s.pkl' % (files['counts_dir'], param_string)
+    files['metrics_fn'] = '%slabel_metrics_%s.pkl' % (files['models_dir'],
+                                                      param_string)
+    files['gt_fn'] = '%sgt_dict_%s_%s.pkl' % (files['gt_dir'],
+                                              hp['eval_set'],
+                                              hp['eval_method'])
 
     # Output file names, (depend on eval set)
     param_string_eval_set = create_param_string(hp, True)
-    files['image_metrics_fn'] = ('Results/%s/image_metrics_%s.pkl' % (
-        param_string_eval_set, param_string_eval_set))
-
+    files['image_metrics_fn'] = ('%s%s/image_metrics_%s.pkl' %
+                                 (files['results_dir'],
+                                  param_string_eval_set,
+                                  param_string_eval_set))
     return files
 
 
@@ -295,7 +311,7 @@ def add_metric_random(metrics_df):
 # Compute image-dependent metrics, based on label metrics and confidence.
 # I/O: Construct a data-frame of the evaluation-set images with the models.
 # Headers: image | label | px | singleton | H | dkl | mi | random | wH | y_true
-def compute_image_metrics(image_to_gt, label_metrics, files, method='ml',
+def compute_image_metrics(image_to_gt, label_metrics, files, method='sl',
                           gt_in_voc=True, do_verify=False, y_force=True):
     # Load image-metrics.
     output_fn, eval_fn = files['image_metrics_fn'], files['eval_fn']
@@ -365,7 +381,7 @@ def compute_image_metrics(image_to_gt, label_metrics, files, method='ml',
     gtdf = gtdf.sort_values(by='ImageID', ascending=False).reset_index(drop=True)
 
     # Save results.
-    dir = 'Results/' + output_fn.split('/')[1]
+    dir = '/'.join(output_fn.split('/')[:-1])
     if not os.path.exists(dir): os.makedirs(dir)
     pickle.dump(gtdf, open(output_fn, 'w'))
     print('Saved metrics to [%s]' % green(output_fn))
@@ -527,11 +543,11 @@ def raters_performance(images, gt_path):
     return p
 
 
-def save_results(hp, precision, sem_p, recall, sem_r):
+def save_results(hp, results_dir, precision, sem_p, recall, sem_r):
     add_eval_set_to_string = True
     param_string = create_param_string(hp, add_eval_set_to_string)
 
-    path = 'Results/' + param_string
+    path = results_dir + param_string
     if not os.path.exists(path):
         os.makedirs(path)
 

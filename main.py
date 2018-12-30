@@ -21,13 +21,6 @@ from termcolor import colored
 np.set_printoptions(precision=4)
 pd.set_option('precision', 2)
 
-"""
- ipython magic
-
-% load_ext autoreload
-% autoreload 2
-"""
-
 print(os.getcwd())
 
 # Init: flags, version, hyper parameters
@@ -104,8 +97,8 @@ for seed in range(hp['max_seed']+1):
 label_metrics = utils.compute_metrics_for_tree_mix(models, hp)
 
 # Load ground truth data.
-image_to_gt = utils.load_evaluation_set(hp, files['eval_path'],
-                                        files['gt_filename'],
+image_to_gt = utils.load_evaluation_set(hp, files['iota10k'],
+                                        files['gt_fn'],
                                         args.min_rater_count)
 
 # Arrange metrics for the gt labels in df.
@@ -115,19 +108,19 @@ image_metrics = utils.compute_image_metrics(image_to_gt, label_metrics,
                                             y_force=hp['y_force'])
 
 images = list(set(image_metrics.ImageID.values.tolist()))
-raters_ub = utils.raters_performance(images, files['gt_filename'])
+raters_ub = utils.raters_performance(images, files['gt_fn'])
 print('Raters agreement: %s' % raters_ub)
 
 # Compute precision & recall over all metrics.
 precision, sem_p, precision_mat = utils.compute_precision(image_metrics, hp['k'])
 recall, sem_r, recall_mat = utils.compute_recall(image_metrics, hp['k'])
 vis.print_top_pr(precision, recall)
-utils.save_results(hp, precision, sem_p, recall, sem_r)
+utils.save_results(hp, files['results_dir'], precision, sem_p, recall, sem_r)
 
 # Plot precision, recall and correlation. Save specific examples to HTML.
 if args.plot_figures:
-    vis.plot_precision(hp, precision, sem_p, raters_ub)
-    vis.plot_recall(hp, recall, sem_r)
-    vis.plot_precision_vs_recall(hp, precision, recall, raters_ub)
-    vis.plot_correlation(hp, image_metrics)
+    vis.plot_precision(hp, files, precision, sem_p, raters_ub)
+    vis.plot_recall(hp, files, recall, sem_r)
+    vis.plot_precision_vs_recall(hp, files, precision, recall, raters_ub)
+    vis.plot_correlation(hp, files, image_metrics)
     vis.write_models_to_html(image_metrics, hp, files)

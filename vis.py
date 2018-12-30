@@ -3,11 +3,6 @@ Code for visualizing IOTA results
 
 """
 
-if MYPATH in os.env:
-    set_path(MYPATH)
-else:
-    set_oath('.')
-
 import os
 import matplotlib
 if "DISPLAY" not in os.environ:
@@ -75,8 +70,8 @@ def get_models_style():
     return metrics, fs, line_width, marker_size
 
 
-def save_figure_and_close(param_string, filename):
-    path = 'Results/' + param_string
+def save_figure_and_close(files, param_string, filename):
+    path = files['results_dir'] + param_string
     if not os.path.exists(path):
         os.makedirs(path)
     filepath = path + '/' + param_string + '_' + filename
@@ -85,7 +80,22 @@ def save_figure_and_close(param_string, filename):
     plt.close()
 
 
-def plot_correlation(hp, df, headers=['Confidence', 'cH', 'cMI', 'cSingleton',
+# def save_results(hp, files, precision, sem_p, recall, sem_r):
+#     add_eval_set_to_string = True
+#     param_string = create_param_string(hp, add_eval_set_to_string)
+#
+#     path = files['results_dir'] + param_string
+#     if not os.path.exists(path):
+#         os.makedirs(path)
+#
+#     output_filename = '/precision_recall.pkl'
+#     pickle.dump((precision, sem_p, recall, sem_r), open(path +
+#                                                         output_filename, 'w'))
+
+
+
+def plot_correlation(hp, files, df, headers=['Confidence', 'cH', 'cMI',
+                                         'cSingleton',
                                         'H', 'px', 'random', 'mi', 'singleton',
                                         'cPX', 'cDKL', 'dkl'], show=False):
     add_eval_set_to_string = True
@@ -101,7 +111,7 @@ def plot_correlation(hp, df, headers=['Confidence', 'cH', 'cMI', 'cSingleton',
     sns.heatmap(corr, xticklabels=d, yticklabels=d, cmap='viridis')
 
     if show: plt.show()
-    save_figure_and_close(param_string, 'correlation.png')
+    save_figure_and_close(files, param_string, 'correlation.png')
 
 
 def print_top_pr(average_precision, average_recall):
@@ -113,10 +123,8 @@ def print_top_pr(average_precision, average_recall):
         print('%20s  p@1=%4.2f r@1=%4.2f' % (m, p[0], r[0]))
 
 
-def plot_precision(hp, average_precision, err, raters_p, show=False):
+def plot_precision(hp, files, average_precision, err, raters_p, show=False):
     k = hp['k']
-    add_eval_set_to_string = True
-    param_string = utils.create_param_string(hp, add_eval_set_to_string)
     metrics, fs, lw, ms = get_models_style()
     k_vec = range(1, k + 1)
     fig, ax = plt.subplots(figsize=(8, 5))
@@ -146,10 +154,13 @@ def plot_precision(hp, average_precision, err, raters_p, show=False):
                mode="expand", ncol=3, prop={'size': 14}, frameon=False,
                borderaxespad=0)
     if show: plt.show()
-    save_figure_and_close(param_string, 'precision.png')
+
+    add_eval_set_to_string = True
+    param_string = utils.create_param_string(hp, add_eval_set_to_string)
+    save_figure_and_close(files, param_string, 'precision.png')
 
 
-def plot_recall(hp, average_recall, err, show=False):
+def plot_recall(hp, files, average_recall, err, show=False):
     k = hp['k']
     add_eval_set_to_string = True
     param_string = utils.create_param_string(hp, add_eval_set_to_string)
@@ -174,10 +185,10 @@ def plot_recall(hp, average_recall, err, show=False):
     plt.rc('xtick', labelsize=fs['ticks'])
     plt.rc('ytick', labelsize=fs['ticks'])
     if show: plt.show()
-    save_figure_and_close(param_string, 'recall.png')
+    save_figure_and_close(files, param_string, 'recall.png')
 
 
-def plot_precision_vs_recall(hp, average_precision, average_recall,
+def plot_precision_vs_recall(hp, files, average_precision, average_recall,
                              raters_p, show=False):
     add_eval_set_to_string = True
     param_string = utils.create_param_string(hp, add_eval_set_to_string)
@@ -203,7 +214,7 @@ def plot_precision_vs_recall(hp, average_precision, average_recall,
                borderaxespad=0)
     if show: plt.show()
     fig.dpi = 200
-    save_figure_and_close(param_string, 'pr.png')
+    save_figure_and_close(files, param_string, 'pr.png')
 
 
 def write_models_to_html(image_metrics, hp, files):
@@ -211,8 +222,9 @@ def write_models_to_html(image_metrics, hp, files):
                               inplace=True)
     add_eval_set = True
     param_string_eval_set = utils.create_param_string(hp, add_eval_set)
-    out_filename = ('Results/%s/%s.html' % (param_string_eval_set,
-                    param_string_eval_set))
+    out_filename = ('%s/%s/%s.html' % (files['results_dir'],
+                                       param_string_eval_set,
+                                       param_string_eval_set))
 
     # Map metric to its display name.
     metrics, metrics_display = [], dict()

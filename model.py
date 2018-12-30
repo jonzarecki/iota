@@ -180,8 +180,8 @@ def load_count_data(filename, oid_data, hp):
                      num_images, label_to_ind, ind_to_label,
                      singles, num_labels], open(filename, 'wb'))
 
-    path = 'Data/counts'
-    if not os.path.exists(path): os.makedirs(path)
+    dir = '/'.join(filename.split('/')[:-1])
+    if not os.path.exists(dir): os.makedirs(dir)
     print('     Found ' + str(len(label_to_ind.keys())) + ' labels')
     return count, pair_count, mis_dict, c22_dict, num_images, label_to_ind, \
            ind_to_label, singles, num_labels
