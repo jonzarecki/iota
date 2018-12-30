@@ -15,12 +15,11 @@ requirements.txt
 
 ### IOTA-10K ground truth data 
 ```
-wget https://chechiklab.biu.ac.il/~brachalior/IOTA/data/iota10K/iota_raw.csv
-.tar.gz
-
+wget https://chechiklab.biu.ac.il/~brachalior/IOTA/data/iota10K/iota_raw.csv.tar.gz
 ```
 ### Open Images Dataset (OID)
-Download [Image-Level Labels](https://storage.googleapis.com/openimages/web/download.html) to iota/data/oid 
+Download [Image-Level Labels](https://storage.googleapis
+.com/openimages/web/download.html) from the Open Images Dataset to data/oid 
 
 To change the default location of the data or results directory: 
 ```
