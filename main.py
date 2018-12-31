@@ -1,12 +1,5 @@
 """ Main script for IOTA, Informative object annotations
 
-   Running example:
-   ssh dsigpu01
-   SEED=0 python main.py --atleast 100 --rater human --split test --base cortex
-
-   For more details see
-       python main.py -h
-
 """
 import model
 import utils

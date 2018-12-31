@@ -155,7 +155,7 @@ pyzmq=17.1.2=py27h14c3975_0
 qt=4.8.7=2
 qtconsole=4.4.2=py27_0
 readline=7.0=ha6073c6_4
-requests=2.18.4=py27hc5b0589_1
+requests=2.20.0=py27hc5b0589_1
 rsa=3.4.2=py27_0
 scandir=1.9.0=py27h14c3975_0
 scikit-image=0.14.0=py27hf484d3e_1
