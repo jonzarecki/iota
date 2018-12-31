@@ -4,7 +4,7 @@
 
 Code for selecting informative labels of images based on a known distribution of labels.
 
-### To install   
+### To install the anaconda environment
 ```
 $ conda install --yes --file requirements.txt
 
