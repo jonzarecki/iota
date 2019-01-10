@@ -241,7 +241,7 @@ def compute_metrics(ind_to_label, singles, c22_dict, mis_tree_graph,
     for start in range(num_labels):  # Run over labels in vocabulary.
         sorted_tree = model.sort_graph(mis_tree_graph, start)
         root_p = float(singles[ind_to_label[start]]) / num_images
-        root_marginals = np.array([1.0 - root_p, root_p])  # fix: Set p(X=1)
+        root_marginals = np.array([1.0 - root_p, root_p])
         root_dkl = model.compute_dkl(np.array([0.0, 1.0]), root_marginals)
         root_marginals = np.array([0.0, 1.0])
         H, _, Hm, dkl = model.update_marginals(sorted_tree, c22_dict,
