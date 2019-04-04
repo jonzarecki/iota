@@ -4,6 +4,11 @@
 
 Code for selecting informative labels of images based on a known distribution of labels.
 
+### Download code
+```
+git clone ssh://git@github.com:liorbracha/iota.git
+```
+
 ### To install the anaconda environment
 ```
 $ conda install --yes --file requirements.txt
@@ -21,8 +26,8 @@ Download [Image-Level Labels](https://storage.googleapis.com/openimages/web/down
 
 To change the default location of the data or results directory: 
 ```
-os.environ['RES_DIR'] = '...'
-os.environ['OID_DIR'] = '...'
+export RES_DIR=/where/results/are/written
+export OID_DIR=/where/data/is/located/
 ``` 
     # data
     #   |_ ground_truth
