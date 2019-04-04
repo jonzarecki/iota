@@ -36,37 +36,47 @@ def set_colors():
 
 
 def get_models_style():
+    # Color palate: steelblue, olivedrab, slateblue, chocolate, firebrick
     # colors = set_colors() # For earlier versions of matplotlib
     colors = dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS)
-
-    metrics = OrderedDict()
-    metrics[0] = {'name': 'cH', 'legend': '$cw{\Delta}H$',
+    metrics = dict()
+    metrics[6] = {'name': 'cH', 'legend': '$\mathbf{cw-\Delta H}$',
                   'color': colors['royalblue'], 'fmt': '-', 'marker': 's'}
-    metrics[1] = {'name': 'cDKL', 'legend': '$cw D_{KL}$',
-                  'color': colors['lightcoral'], 'fmt': '-', 'marker': 'x'}
-    metrics[2] = {'name': 'cMI', 'legend': 'cw Image MI',
-                  'color': colors['skyblue'], 'fmt': '-', 'marker': '.'}
-    metrics[3] = {'name': 'cSingleton', 'legend': 'cw Singleton',
-                  'color': colors['mediumpurple'], 'fmt': '-', 'marker': '^'}
-    metrics[4] = {'name': 'cPX', 'legend': 'cw P(x)',
-                  'color': colors['palegreen'], 'fmt': '-', 'marker': '*'}
-    metrics[5] = {'name': 'Confidence', 'legend': 'confidence',
-                  'color': colors['orange'], 'fmt': '-', 'marker': '+'}
-    metrics[6] = {'name': 'random', 'legend': 'random',
-                  'color': colors['black'], 'fmt': '-', 'marker': ''}
-    metrics[7] = {'name': 'H', 'legend': 'H',
-                  'color': colors['red'], 'fmt': '--', 'marker': ''}
-    metrics[8] = {'name': 'mi', 'legend': 'Image MI',
-                  'color': 'skyblue', 'fmt': '--','marker': ''}
-    metrics[9] = {'name': 'px', 'legend': 'P(x)',
-                  'color': colors['steelblue'], 'fmt': '--', 'marker':''}# TFIDF
-    metrics[10] = {'name': 'singleton', 'legend': 'Singleton',
-                  'color': colors['maroon'], 'fmt': '--', 'marker': ''}
-    metrics[11] = {'name': 'dkl', 'legend': 'Dkl',
-                  'color': colors['y'], 'fmt': '--', 'marker':''}
-    fs = {'axis': 26, 'ticks': 16, 'font_size': 18, 'legend': 18}
+    metrics[5] = {'name': 'cDKL', 'legend': '$\mathbf{cw-D_{KL}}$',
+                  'color': colors['steelblue'], 'fmt': '-', 'marker': '*'}
+    metrics[3] = {'name': 'cMI', 'legend': '$\mathbf{cw-Image \Delta H}$',
+                  'color': colors['chocolate'], 'fmt': '-', 'marker': '.'}
+    metrics[2] = {'name': 'cSingleton', 'legend': '$\mathbf{cw-Singleton}$',
+                  'color': colors['firebrick'], 'fmt': '-', 'marker': 'x'}
+    metrics[4] = {'name': 'cPX', 'legend': '$\mathbf{cw-p(x)}$',
+                  'color': colors['y'], 'fmt': '-', 'marker': '^'}
+    metrics[1] = {'name': 'Confidence', 'legend': '$\mathbf{confidence}$',
+                  'color': colors['olivedrab'], 'fmt': '-', 'marker': '+'}
+    metrics[0] = {'name': 'random', 'legend': '$\mathbf{random}$',
+                  'color': colors['grey'], 'fmt': '-', 'marker': ''}
+    # metrics[7] = {'name': 'H', 'legend': 'H',
+    #               'color': colors['red'], 'fmt': '--', 'marker': ''}
+    # metrics[8] = {'name': 'mi', 'legend': '$Image \Delta H$',
+    #               'color': 'skyblue', 'fmt': '--', 'marker': ''}
+    # metrics[9] = {'name': 'px', 'legend': '$p(x)$',
+    #               'color': colors['steelblue'], 'fmt': '--', 'marker':''}# TFIDF
+    # metrics[10] = {'name': 'singleton', 'legend': '$Singleton$',
+    #               'color': colors['maroon'], 'fmt': '--', 'marker': ''}
+    # metrics[11] = {'name': 'dkl', 'legend': '$D_{KL}$',
+    #               'color': colors['y'], 'fmt': '--', 'marker':''}
+    # metrics[12] = {'name': 'imd_H', 'legend': '$cond_H$',
+    #               'color': colors['purple'], 'fmt': '.-', 'marker':''}
+    # metrics[13] = {'name': 'imd_dkl', 'legend': '$cond_dkl$',
+    #               'color': colors['orange'], 'fmt': '.-', 'marker':''}
+    # metrics[14] = {'name': 'imd_cH', 'legend': '$cond_cH$',
+    #                'color': colors['blue'], 'fmt': '.-', 'marker': ''}
+    # metrics[15] = {'name': 'imd_cDKL', 'legend': '$cond_cDKL$',
+    #                'color': colors['cyan'], 'fmt': '.-', 'marker': ''}
+    # fs = {'axis': 26, 'ticks': 16, 'font_size': 18, 'legend': 18}
+    fs = {'axis': 24, 'ticks': 16, 'font_size': 18, 'legend': 18}
     line_width = 2
-    marker_size = 7
+    # marker_size = 7
+    marker_size = 10
     return metrics, fs, line_width, marker_size
 
 
@@ -175,32 +185,42 @@ def plot_recall(hp, files, average_recall, err, show=False):
 
 
 def plot_precision_vs_recall(hp, files, average_precision, average_recall,
-                             raters_p, show=False):
+                             raters_p, show=False, legend_loc='in'):
     add_eval_set_to_string = True
-    param_string = utils.create_param_string(hp, add_eval_set_to_string)
+    # param_string = utils.create_param_string(hp, add_eval_set_to_string)
     metrics, fs, lw, ms = get_models_style()
-    fig, ax = plt.subplots(figsize=(8, 5))
+    fig, ax = plt.subplots(figsize=(10, 7))
+    # fig, ax = plt.subplots()
     max_pr = 0
-    for key in metrics:
+    for key in metrics.keys()[::-1]:
         r = average_recall[metrics[key]['name']].tolist()[0]
         p = average_precision[metrics[key]['name']].tolist()[0]
         if max(p) > max_pr: max_pr = max(p)
-        plt.plot(r, p, lw=lw, label=metrics[key]['legend'], color=metrics[key][
-            'color'], marker=metrics[key]['marker'], markersize=ms)
-    ax.set_xlabel('recall', fontsize=fs['axis'])
-    ax.set_ylabel('precision', fontsize=fs['axis'])
+        plt.plot(r, p, lw=lw, label=metrics[key]['legend'],
+                 color=metrics[key][
+                     'color'], marker=metrics[key]['marker'], mew=2, ms=ms)
+    ax.set_xlabel('Recall', fontsize=fs['axis'])
+    ax.set_ylabel('Precision', fontsize=fs['axis'])
     ax.set_xlim(left=0, right=1)
-    ax.set_ylim(bottom=0, top=max_pr+0.1)
+    ax.set_ylim(bottom=0, top=1)  # max_pr+0.1)
     plt.rc('xtick', labelsize=fs['ticks'])
     plt.rc('ytick', labelsize=fs['ticks'])
     plt.axhline(y=raters_p, color='grey', linestyle='--', linewidth=1,
                 label='rater agreement')
-    plt.legend(bbox_to_anchor=(-0.04, 1.02, 1, 0.2), loc="lower left",
-               mode="expand", ncol=3, prop={'size': 14}, frameon=False,
-               borderaxespad=0)
+
+    if legend_loc == 'out':
+        plt.legend(bbox_to_anchor=(-0.04, 1.02, 1, 0.2), loc="lower left",
+                   mode="expand", ncol=3,
+                   prop={'size': 14, 'weight': 'bold'},
+                   frameon=False, borderaxespad=0)
+    if legend_loc == 'in':
+        plt.legend(loc="upper left", ncol=2,
+                   prop={'size': 14, 'weight': 'bold'},
+                   frameon=False, borderaxespad=0.9)
+
     if show: plt.show()
-    fig.dpi = 200
-    save_figure_and_close(files, param_string, 'pr.png')
+    fig.dpi = 300  # 200
+    # save_figure_and_close(files, param_string, 'pr.png')
 
 
 def write_models_to_html(image_metrics, hp, files):

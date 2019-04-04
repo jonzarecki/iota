@@ -112,12 +112,11 @@ def set_file_path(hp):
     #   |_models
     #   |_counts
     #
-
     results_dir = os.environ.get('RES_DIR') if 'RES_DIR' in os.environ else ''
     data_dir = os.environ.get('OID_DIR') if 'OID_DIR' in os.environ else 'data/'
 
-    files['oid_dir'] = data_dir + 'oid/'
-    files['results_dir'] = results_dir + 'results/'
+    files['oid_dir'] = data_dir
+    files['results_dir'] = results_dir
     files['counts_dir'] = files['results_dir'] + 'counts/'
     files['models_dir'] = files['results_dir'] + 'models/'
 

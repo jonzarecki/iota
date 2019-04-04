@@ -15,6 +15,8 @@ np.set_printoptions(precision=4)
 pd.set_option('precision', 2)
 
 print(os.getcwd())
+os.environ['RES_DIR'] = '/cortex/users/brachalior/storage/results/'
+os.environ['OID_DIR'] = '/cortex/data/images/openimagesV3/oid/'
 
 # Init: flags, version, hyper parameters
 assert(sys.version_info[0] == 2)  # Python 2.7
@@ -95,9 +97,10 @@ image_to_gt = utils.load_evaluation_set(hp, files['iota10k'],
                                         args.min_rater_count)
 
 # Arrange metrics for the gt labels in df.
-image_metrics = utils.compute_image_metrics(image_to_gt, label_metrics,
-                                            files, method=hp['eval_method'],
+image_metrics = utils.compute_image_metrics(image_to_gt, label_metrics, files,
+                                            method=hp['eval_method'],
                                             do_verify=hp['do_verify'],
+                                            gt_in_voc=hp['gt_vocab'],
                                             y_force=hp['y_force'])
 
 images = list(set(image_metrics.ImageID.values.tolist()))
