@@ -15,8 +15,6 @@ np.set_printoptions(precision=4)
 pd.set_option('precision', 2)
 
 print(os.getcwd())
-os.environ['RES_DIR'] = '/cortex/users/brachalior/storage/results/'
-os.environ['OID_DIR'] = '/cortex/data/images/openimagesV3/oid/'
 
 # Init: flags, version, hyper parameters
 assert(sys.version_info[0] == 2)  # Python 2.7
