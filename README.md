@@ -1,8 +1,20 @@
-
-
-# Informative-Annotations
-
+# Informative-Object-Annotations (IOTA) - CVPR 2019
 Code for selecting informative labels of images based on a known distribution of labels.
+
+### Paper
+See our [CVPR 2019 Paper](http://openaccess.thecvf.com/content_CVPR_2019/papers/Bracha_Informative_Object_Annotations_Tell_Me_Something_I_Dont_Know_CVPR_2019_paper.pdf)
+
+### Citation
+If you find IOTA useful in your research, please consider citing:
+```
+@inproceedings{bracha2019informative,
+  title={Informative Object Annotations: Tell Me Something I Don't Know},
+  author={Bracha, Lior and Chechik, Gal},
+  booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
+  pages={12507--12515},
+  year={2019}
+}
+```
 
 ### Download code
 ```
