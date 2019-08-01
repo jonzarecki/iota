@@ -1,4 +1,4 @@
-# Informative-Object-Annotations (IOTA) - CVPR 2019
+# Informative Object Annotations (IOTA) - CVPR 2019
 Code for selecting informative labels of images based on a known distribution of labels.
 
 ### Paper
