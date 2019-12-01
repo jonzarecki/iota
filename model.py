@@ -14,6 +14,9 @@ from termcolor import colored
 import utils
 from tqdm import tqdm
 
+import utils.metrics_utils
+import utils.parsing_utils
+
 np.set_printoptions(precision=4)
 
 
@@ -129,7 +132,7 @@ def compute_label_cooccurrence(filename, label_to_ind, ind_to_label,
     for pair in itertools.product(range(0, num_labels), repeat=2):
         l1, l2 = pair[0], pair[1]
         if l1*num_labels+l2 % 1000 == 0:
-            print(l1*num_labels+l2, utils.timestamp(l1*num_labels+l2))
+            print(l1 * num_labels + l2, utils.parsing_utils.timestamp(l1 * num_labels + l2))
         c1, c2 = singles[ind_to_label[l1]], singles[ind_to_label[l2]]
         both = count[l1][l2][1][1]
         count[l1][l2][0][1] = c2 - both
@@ -274,7 +277,7 @@ def get_graph_info(c22_dict, sorted_graph, ind_to_label, class_descriptions):
     graph_counts = OrderedDict()
     index = OrderedDict()
     graph_pairs_dict = OrderedDict()
-    names = utils.load_display_names(class_descriptions)
+    names = utils.metrics_utils.load_display_names(class_descriptions)
     for father, sons in sorted_graph.items():
         index[father] = [ind_to_label[father], names[ind_to_label[father]]]
         for son in sons:

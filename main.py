@@ -2,7 +2,8 @@
 
 """
 import model
-import utils
+import utils.metrics_utils
+import utils.parsing_utils
 import vis
 import os
 import numpy as np
@@ -20,7 +21,7 @@ print(os.getcwd())
 assert(sys.version_info[0] == 2)  # Python 2.7
 # assert(pd.__version__ == u'0.23.4')
 hp = dict()
-args = utils.parse_flags()
+args = utils.parsing_utils.parse_flags()
 hp['annotations'] = args.annotations
 hp['atleast'] = int(args.atleast)
 hp['rater'] = args.rater
@@ -42,8 +43,8 @@ for seed in range(hp['max_seed']+1):
     hp['seed'] = seed
 
     # Set file path.
-    files = utils.set_file_path(hp)
-    param_string = utils.create_param_string(hp, False)
+    files = utils.parsing_utils.set_file_path(hp)
+    param_string = utils.parsing_utils.create_param_string(hp, False)
 
     # Load model.
     if os.path.isfile(files['model_fn']):
@@ -68,11 +69,11 @@ for seed in range(hp['max_seed']+1):
                                          num_images, ind_to_label)
 
     # Compute label - metrics.
-    label_metrics = utils.compute_metrics(ind_to_label, singles,
-                                          c22_dict, mis_tree_graph,
-                                          num_images, num_labels,
-                                          files['class_descriptions'],
-                                          files['metrics_fn'])
+    label_metrics = utils.metrics_utils.compute_metrics(ind_to_label, singles,
+                                                        c22_dict, mis_tree_graph,
+                                                        num_images, num_labels,
+                                                        files['class_descriptions'],
+                                                        files['metrics_fn'])
 
     # Pack all model variables in a single variable.
     models[seed] = dict()
@@ -87,7 +88,7 @@ for seed in range(hp['max_seed']+1):
     models[seed]['label_metrics'] = label_metrics
     pickle.dump(models[seed], open(files['model_fn'], 'wb'))
 
-label_metrics = utils.compute_metrics_for_tree_mix(models, hp, files)
+label_metrics = utils.metrics_utils.compute_metrics_for_tree_mix(models, hp, files)
 
 # Load ground truth data.
 image_to_gt = utils.load_evaluation_set(hp, files['iota10k'],
@@ -95,19 +96,19 @@ image_to_gt = utils.load_evaluation_set(hp, files['iota10k'],
                                         args.min_rater_count)
 
 # Arrange metrics for the gt labels in df.
-image_metrics = utils.compute_image_metrics(image_to_gt, label_metrics, files,
-                                            method=hp['eval_method'],
-                                            do_verify=hp['do_verify'],
-                                            gt_in_voc=hp['gt_vocab'],
-                                            y_force=hp['y_force'])
+image_metrics = utils.metrics_utils.compute_image_metrics(image_to_gt, label_metrics, files,
+                                                          method=hp['eval_method'],
+                                                          do_verify=hp['do_verify'],
+                                                          gt_in_voc=hp['gt_vocab'],
+                                                          y_force=hp['y_force'])
 
 images = list(set(image_metrics.ImageID.values.tolist()))
 raters_ub = utils.raters_performance(images, files['gt_fn'])
 print('Raters agreement: %s' % raters_ub)
 
 # Compute precision & recall over all metrics.
-precision, sem_p, precision_mat = utils.compute_precision(image_metrics, hp['k'])
-recall, sem_r, recall_mat = utils.compute_recall(image_metrics, hp['k'])
+precision, sem_p, precision_mat = utils.metrics_utils.compute_precision(image_metrics, hp['k'])
+recall, sem_r, recall_mat = utils.metrics_utils.compute_recall(image_metrics, hp['k'])
 vis.print_top_pr(precision, recall)
 utils.save_results(hp, files['results_dir'], precision, sem_p, recall, sem_r)
 
