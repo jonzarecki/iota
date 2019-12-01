@@ -12,6 +12,8 @@ import pandas as pd
 from scipy.sparse import csr_matrix
 from termcolor import colored
 import utils
+from tqdm import tqdm
+
 np.set_printoptions(precision=4)
 
 
@@ -99,11 +101,9 @@ def compute_label_cooccurrence(filename, label_to_ind, ind_to_label,
     num_images = 0
 
     df = pd.read_csv(filename)
-    for i_line, row in df.iterrows():
+    for i_line, row in tqdm(df.iterrows(), desc="calculating label co-occurrence", total=len(df)):
         # Omit lines randomly for bootstrapping.
         if np.random.sample() < skip_probability: continue
-        if i_line % 100000 == 0:
-            print('line=%d %s' % (i_line, utils.timestamp(i_line)))
         # The line format is: ImageID,Source,LabelName,Confidence
         image_id = row['ImageID']
         new_label = row['LabelName']

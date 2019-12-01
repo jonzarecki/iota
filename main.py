@@ -18,7 +18,7 @@ print(os.getcwd())
 
 # Init: flags, version, hyper parameters
 assert(sys.version_info[0] == 2)  # Python 2.7
-assert(pd.__version__ == u'0.23.4')
+# assert(pd.__version__ == u'0.23.4')
 hp = dict()
 args = utils.parse_flags()
 hp['annotations'] = args.annotations
