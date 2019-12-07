@@ -11,7 +11,6 @@ import pickle
 import pandas as pd
 from scipy.sparse import csr_matrix
 from termcolor import colored
-import utils
 from tqdm import tqdm
 
 import utils.metrics_utils
@@ -164,7 +163,7 @@ def update_counts(label_ind_set, count,
 
 
 # Load labels and counts.
-def load_count_data(filename, oid_data, hp):
+def load_count_data(filename, oid_data, cls_desc, hp):
     if os.path.isfile(filename):
         print('Load labels and counts from: [%s]' % colored(filename, 'blue'))
         (count, pair_count, mis_dict, c22_dict, num_images, label_to_ind,
@@ -172,7 +171,9 @@ def load_count_data(filename, oid_data, hp):
     else:
         print(colored("   File [" + filename + "] missing: Compute counts.",
                       "red"))
-        singles, num_labels = compute_label_count(oid_data, hp['atleast'])
+        disp_dict = utils.metrics_utils.load_display_names(cls_desc)
+        singles, num_labels = \
+            compute_label_count(oid_data, hp['atleast'])
         label_to_ind, ind_to_label = create_label_dict(singles)
         count, pair_count, c22_dict, num_images = compute_label_cooccurrence(
             oid_data, label_to_ind,  ind_to_label, singles,

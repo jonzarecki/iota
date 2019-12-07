@@ -6,8 +6,8 @@ Code for visualizing IOTA results
 import os
 import matplotlib
 
-import utils.metrics_utils
-import utils.parsing_utils
+from utils import metrics_utils
+from utils import parsing_utils
 
 if "DISPLAY" not in os.environ:
     #raise ValueError('Gal: DISPLAY not in os.environ')
@@ -90,7 +90,7 @@ def save_figure_and_close(files, param_string, filename):
         os.makedirs(path)
     filepath = path + '/' + param_string + '_' + filename
     plt.savefig(filepath, bbox_inches='tight', facecolor='white')
-    print('Write figure to [%s]' % utils.parsing_utils.blue(filepath))
+    print('Write figure to [%s]' % parsing_utils.blue(filepath))
     plt.close()
 
 
@@ -99,7 +99,7 @@ def plot_correlation(hp, files, df, headers=['Confidence', 'cH', 'cMI',
                                         'H', 'px', 'random', 'mi', 'singleton',
                                         'cPX', 'cDKL', 'dkl'], show=False):
     add_eval_set_to_string = True
-    param_string = utils.parsing_utils.create_param_string(hp, add_eval_set_to_string)
+    param_string = parsing_utils.create_param_string(hp, add_eval_set_to_string)
     metrics, font_size, lw, ms = get_models_style()
     disp = dict()
     for n in metrics.values():
@@ -156,14 +156,14 @@ def plot_precision(hp, files, average_precision, err, raters_p, show=False):
     if show: plt.show()
 
     add_eval_set_to_string = True
-    param_string = utils.parsing_utils.create_param_string(hp, add_eval_set_to_string)
+    param_string = parsing_utils.create_param_string(hp, add_eval_set_to_string)
     save_figure_and_close(files, param_string, 'precision.png')
 
 
 def plot_recall(hp, files, average_recall, err, show=False):
     k = hp['k']
     add_eval_set_to_string = True
-    param_string = utils.parsing_utils.create_param_string(hp, add_eval_set_to_string)
+    param_string = parsing_utils.create_param_string(hp, add_eval_set_to_string)
     metrics, fs, lw, ms = get_models_style()
     k_vec = range(1, k + 1)
     fig, ax = plt.subplots(figsize=(8, 5))
@@ -191,7 +191,7 @@ def plot_recall(hp, files, average_recall, err, show=False):
 def plot_precision_vs_recall(hp, files, average_precision, average_recall,
                              raters_p, show=False, legend_loc='in'):
     add_eval_set_to_string = True
-    # param_string = utils.create_param_string(hp, add_eval_set_to_string)
+    # param_string = create_param_string(hp, add_eval_set_to_string)
     metrics, fs, lw, ms = get_models_style()
     fig, ax = plt.subplots(figsize=(10, 7))
     # fig, ax = plt.subplots()
@@ -231,7 +231,7 @@ def write_models_to_html(image_metrics, hp, files):
     image_metrics.sort_values(['ImageID', 'cH'], ascending=[True, False],
                               inplace=True)
     add_eval_set = True
-    param_string_eval_set = utils.parsing_utils.create_param_string(hp, add_eval_set)
+    param_string_eval_set = parsing_utils.create_param_string(hp, add_eval_set)
     out_filename = ('%s/%s/%s.html' % (files['results_dir'],
                                        param_string_eval_set,
                                        param_string_eval_set))
@@ -245,7 +245,7 @@ def write_models_to_html(image_metrics, hp, files):
     metrics_display['y_true'] = 'GT'
 
     # Read URLs
-    id_url = utils.image_to_url(files['images_path'])
+    id_url = image_to_url(files['images_path'])
     images = list(set(image_metrics.ImageID.values.tolist()))
 
     f = open(out_filename, 'w')
@@ -274,7 +274,7 @@ def write_models_to_html(image_metrics, hp, files):
         f.write('</td></tr>')
     f.write('</table></body></html>')
     f.close()
-    print('Finished writing html to [%s]' % utils.parsing_utils.blue(out_filename))
+    print('Finished writing html to [%s]' % parsing_utils.blue(out_filename))
 
 
 def oid_px_vs_entropy(singles, num_images):
@@ -321,7 +321,7 @@ def plot_robustness_to_num_trees(hp):
     tree_to_p = dict()
     for num_trees in trees:
         hp['seed'] = num_trees
-        param_string = utils.parsing_utils.create_param_string(hp, True)
+        param_string = parsing_utils.create_param_string(hp, True)
         path = 'Results/' + param_string + '/results.pkl'
         print('Read results from %s' % path)
 
@@ -350,7 +350,7 @@ def plot_robustness_to_vocab_size(hp, atleast, show=False):
     for t in atleast:
         hp['atleast'] = t
 
-        param_string = utils.parsing_utils.create_param_string(hp, True)
+        param_string = parsing_utils.create_param_string(hp, True)
 
         # Read precision
         path_results = 'Results/robust/vocab/' + param_string + '/results.pkl'
@@ -418,7 +418,7 @@ def plot_robustness_to_vocab_size(hp, atleast, show=False):
 
 
 def plot_network(sorted_graph, classes_fn, ind_to_label, mis_dict, ind=True):
-    disp = utils.metrics_utils.load_display_names(classes_fn)
+    disp = metrics_utils.load_display_names(classes_fn)
     G = Digraph('tree', filename='tree.gv')
     G.attr(size='6,6')
     G.node_attr.update(color='grey', style='filled')

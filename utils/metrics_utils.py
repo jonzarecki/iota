@@ -14,13 +14,13 @@ def load_display_names(classes_filename):
     return display_names
 
 
-
+#TODO:main function
 def compute_metrics(ind_to_label, singles, c22_dict, mis_tree_graph,
                     num_images, num_labels, classes_fn, metrics_fn):
 
-    if os.path.isfile(metrics_fn):
+    if False and os.path.isfile(metrics_fn):
         print('Load metrics df from [%s]' % blue(metrics_fn))
-        metrics_df = pickle.load(open(metrics_fn, 'r'))
+        metrics_df = pickle.load(open(metrics_fn, 'rb'))
         return metrics_df
 
     print('Compute metrics (missing [%s])' % red(metrics_fn))
@@ -38,6 +38,7 @@ def compute_metrics(ind_to_label, singles, c22_dict, mis_tree_graph,
     # Compute delta entropy and DKLs given labels.
     # =============================================
     for start in range(num_labels):  # Run over labels in vocabulary.
+        #TODO: here we compute DKL for each label
         sorted_tree = model.sort_graph(mis_tree_graph, start)
         root_p = float(singles[ind_to_label[start]]) / num_images
         root_marginals = np.array([1.0 - root_p, root_p])

@@ -1,7 +1,8 @@
 conda env remove --name iota
 conda create --name iota --yes
 
-export OID_DIR=/cortex/data/images/OID/oid/
+#export OID_DIR=/cortex/data/images/OID/oid/  # in lab
+export OID_DIR=/media/yonatanz/yz/OID/oid
 conda config --env --add channels ankurankan
 conda config --env --add channels conda-forge
 conda install --yes --file requirements.txt

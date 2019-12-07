@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d83d49f2-7514-4abe-9ab2-c1d68e5b7e15" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/utils/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/load_utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/metrics_utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/parsing_utils.py" afterDir="false" />
+    <list default="true" id="d83d49f2-7514-4abe-9ab2-c1d68e5b7e15" name="Default Changelist" comment="re-order files">
+      <change beforePath="$PROJECT_DIR$/.idea/iota.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/iota.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/install_scirpt.sh" beforeDir="false" afterPath="$PROJECT_DIR$/install_scirpt.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/metrics_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/metrics_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/parsing_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/parsing_utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vis.py" beforeDir="false" afterPath="$PROJECT_DIR$/vis.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -57,7 +58,16 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/utils/metrics_utils.py" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings module-name="iota" is-module-sdk="true">
+        <option name="myUseModuleSdk" value="true" />
+        <option name="myModuleName" value="iota" />
+      </console-settings>
+    </option>
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -79,8 +89,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" singleton="false" temporary="true">
+  <component name="RunManager" selected="Python.main home">
+    <configuration name="main cortex" type="PythonConfigurationType" factoryName="Python" singleton="false" temporary="true">
       <module name="iota" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -113,9 +123,46 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="main home" type="PythonConfigurationType" factoryName="Python" singleton="false">
+      <module name="iota" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="OID_DIR" value="/media/yonatanz/yz/OID/oid/" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
+        </ENTRIES>
+      </EXTENSION>
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="--max_seed 10 --do_verify False --gt_vocab False --annotations oid --split test --eval_set iota_test --atleast 300 --skip_probability 0.2" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.main home" />
+      <item itemvalue="Python.main cortex" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main" />
+        <item itemvalue="Python.main cortex" />
       </list>
     </recent_temporary>
   </component>
@@ -130,7 +177,7 @@
       <option name="presentableId" value="Default" />
       <updated>1545325395252</updated>
       <workItem from="1575194673425" duration="5108000" />
-      <workItem from="1575202891776" duration="10382000" />
+      <workItem from="1575202891776" duration="19267000" />
     </task>
     <task id="LOCAL-00001" summary="change requirements to fit modern times">
       <created>1575219619601</created>
@@ -139,7 +186,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575219619601</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="re-order files">
+      <created>1575227821876</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1575227821876</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -160,15 +214,31 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="change requirements to fit modern times" />
-    <option name="LAST_COMMIT_MESSAGE" value="change requirements to fit modern times" />
+    <MESSAGE value="re-order files" />
+    <option name="LAST_COMMIT_MESSAGE" value="re-order files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/model.py</url>
-          <line>181</line>
+          <line>182</line>
           <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>73</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/utils/metrics_utils.py</url>
+          <line>25</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>62</line>
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -181,6 +251,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/iota$main.coverage" NAME="main Coverage Results" MODIFIED="1575227708042" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/iota$main.coverage" NAME="main cortex Coverage Results" MODIFIED="1575706131944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/iota$main_home.coverage" NAME="main home Coverage Results" MODIFIED="1575710249209" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
